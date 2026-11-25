@@ -1,12 +1,17 @@
-# Vorlage für Home-Assistant-Apps
+# WiFi Drone Connect für Home Assistant
 
-[🇬🇧 English](README.md) · **🇩🇪 Deutsch**
+[English](README.md)
 
-Aus dieser Vorlage entsteht eine Supervisor-App mit Image-Builds für mehrere Architekturen, Laufzeittests und Veröffentlichung auf GHCR.
+Lokale Kamera-Bridge für RTSP- und HTTP(S)-Videoquellen. Die Home-Assistant-App bietet ein Livebild über Ingress, JPEG-Schnappschüsse und eine authentifizierte API für die separate Integration.
 
-1. Erstelle aus der Vorlage ein Repository mit dem Namen `Home-Assistant-<Projekt>-App`, damit der App-Katalog es findet.
-2. Benenne `example-app/` nach deinem Slug. Passe in `config.yaml` den Slug, Namen, die Beschreibung, URL und Optionen an.
-3. Aktualisiere das Repository-Label im Dockerfile und ersetze die Beispielausgabe in `run.sh`. Für ältere Architekturen wie `armv7` verwendet das Dockerfile eigene `*_LEGACY`-Paketversionen.
-4. Passe `.github/tests/runtime.sh` an. Die Pipeline führt das Skript im gebauten Image aus.
-5. Hinterlege `ORCHESTRATION_PAT` für den Zugriff auf die private Workflow-Engine. Mit einem lokalen Checkout unter `.engine/` erzeugt `python .engine/.scripts/readme.py` den Titel und die Badges der englischen README.
-6. Erhöhe für ein Release `version` in `config.yaml` und `BUILD_VERSION` im Dockerfile gemeinsam. Beschreibe im [Changelog](example-app/CHANGELOG.md), was sich für Nutzer ändert.
+1. Füge [dieses App-Repository](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fseb5594%2FHome-Assistant-WiFi-Drone-App) in Home Assistant hinzu.
+2. Installiere **WiFi Drone Connect**, trage die Kamera-URL ein und starte die App.
+3. Öffne die Weboberfläche der App oder installiere die [WiFi-Drone-Integration](https://github.com/seb5594/hass-wifi_drone-integration) für Kamera und Verbindungsstatus als Entitäten.
+
+[Konfiguration und API](wifi_drone/DOCS.md) · [Python-SDK](https://github.com/seb5594/wifi-drone-connect)
+
+Das konkrete Stream-Protokoll und die Kamera-Adresse der Gear2Play Sky Cam müssen noch an einem Gerät bestätigt werden.
+
+## Lizenz
+
+Veröffentlicht unter der [MIT-Lizenz](LICENSE).

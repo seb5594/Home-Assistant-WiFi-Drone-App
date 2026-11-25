@@ -1,0 +1,30 @@
+name: WiFi Drone Connect
+version: 0.1.0
+slug: wifi_drone
+description: Local live video and snapshots from WiFi drone cameras.
+url: https://github.com/seb5594/Home-Assistant-WiFi-Drone-App
+arch:
+  - amd64
+  - aarch64
+startup: application
+boot: auto
+init: true
+ingress: true
+ingress_port: 8098
+panel_icon: mdi:quadcopter
+environment:
+  DRONE_HA_INGRESS: "1"
+ports:
+  8099/tcp: null
+ports_description:
+  8099/tcp: Bridge API (optional external access)
+options:
+  source_url: ""
+  api_token: ""
+  rtsp_transport: tcp
+  copy_mjpeg: false
+schema:
+  source_url: str
+  api_token: password
+  rtsp_transport: list(tcp|udp)
+  copy_mjpeg: bool

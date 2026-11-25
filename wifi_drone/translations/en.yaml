@@ -1,0 +1,13 @@
+configuration:
+  source_url:
+    name: Camera URL
+    description: "RTSP or HTTP(S) endpoint reachable from the Home Assistant host."
+  api_token:
+    name: Bridge API token
+    description: "Use at least 16 printable ASCII characters without spaces. Leave blank to disable API access."
+  rtsp_transport:
+    name: RTSP transport
+    description: "Select TCP or UDP for the RTP transport."
+  copy_mjpeg:
+    name: Preserve original JPEG frames
+    description: "Enable this only when the source video is already encoded as MJPEG."

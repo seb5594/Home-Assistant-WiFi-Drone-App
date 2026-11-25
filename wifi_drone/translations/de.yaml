@@ -1,0 +1,13 @@
+configuration:
+  source_url:
+    name: Kamera-URL
+    description: "Vom Home-Assistant-Host erreichbarer RTSP- oder HTTP(S)-Endpunkt."
+  api_token:
+    name: Bridge-API-Token
+    description: "Mindestens 16 druckbare ASCII-Zeichen ohne Leerzeichen. Leer lassen, um die API zu deaktivieren."
+  rtsp_transport:
+    name: RTSP-Transport
+    description: "TCP oder UDP für den RTP-Transport."
+  copy_mjpeg:
+    name: Originale JPEG-Bilder beibehalten
+    description: "Nur für Quellen aktivieren, die bereits als MJPEG kodiert sind."

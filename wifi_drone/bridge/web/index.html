@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>WiFi Drone Connect</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="assets/viewer.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>WiFi Drone Connect</h1>
+      <p id="status" role="status">Connecting…</p>
+    </header>
+    <div class="preview">
+      <img id="preview" alt="Live video from the configured drone camera" hidden>
+      <p id="placeholder">Waiting for the camera</p>
+    </div>
+    <div class="controls">
+      <button id="toggle" type="button">Pause video</button>
+      <a download="drone-snapshot.jpg" href="api/v1/snapshot.jpg" id="snapshot" hidden>Save snapshot</a>
+    </div>
+  </main>
+</body>
+</html>
