@@ -26,6 +26,10 @@ For cameras already reachable from the app, leave `wifi_ssid` empty. This preser
 
 Select TCP or UDP for RTSP. Enable `copy_mjpeg` only for MJPEG sources, with `?rotate=0` for KY UFO passthrough. Close the vendor camera preview if the drone accepts only one viewer. For Sky Cam, enter the full SSID from Android's network details, including the suffix after `SKY CAM DRONE`. The examples come from the [OpenIPC toy camera notes](https://github.com/OpenIPC/decoder/blob/v2/docs/toys.md).
 
+## Diagnose a missing JieLi picture
+
+Open the app log after the first video timeout. The log shows whether the camera answered `APP_ACCESS` and `OPEN_RT_STREAM` and counts packets and complete JPEGs from the camera separately for UDP 2224 and 6666. For UDP 6666 it also reports possible RTP payload types. A count of zero covers only those listeners.
+
 ## Bridge API
 
 To use the independent WiFi Drone integration, set an `api_token` of at least 16 printable ASCII characters without spaces and restart the app. A blank token disables API access while the Ingress view remains available.

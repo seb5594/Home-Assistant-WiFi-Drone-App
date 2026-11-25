@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.2
+
+- Log JieLi camera replies and packet counts per UDP listener when video times out.
+
 ## 0.3.1
 
 - Support the Sky Cam CTP access version observed in a hardware capture.
