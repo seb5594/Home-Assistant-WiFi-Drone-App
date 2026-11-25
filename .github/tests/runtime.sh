@@ -62,3 +62,6 @@ with urlopen(Request(base + "/stream.mjpg", headers=headers), timeout=4) as resp
 with urlopen("http://127.0.0.1:8098/", timeout=4) as response:
     assert b"WiFi Drone Connect" in response.read()
 PY
+echo 'PASS: authenticated API, HTTP MJPEG snapshot and stream, and web view'
+PYTHONPATH=/opt/wifi-drone python3 /tests/test_wifi.py
+echo 'PASS: WiFi Helper selection, scoped DHCP and radio recovery'

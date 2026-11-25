@@ -8,17 +8,29 @@ ARG PYTHON_VERSION=3.14.10-r2
 ARG AIOHTTP_VERSION=3.13.5-r0
 # renovate: datasource=repology depName=alpine_3_24/ffmpeg
 ARG FFMPEG_VERSION=8.1.3-r0
-RUN apk add --no-cache python3="${PYTHON_VERSION}" py3-aiohttp="${AIOHTTP_VERSION}" ffmpeg="${FFMPEG_VERSION}"
+# renovate: datasource=repology depName=alpine_3_24/iproute2
+ARG IPROUTE2_VERSION=7.0.0-r0
+# renovate: datasource=repology depName=alpine_3_24/iw
+ARG IW_VERSION=6.17-r0
+# renovate: datasource=repology depName=alpine_3_24/wpa_supplicant
+ARG WPA_SUPPLICANT_VERSION=2.11-r4
+RUN apk add --no-cache python3="${PYTHON_VERSION}" py3-aiohttp="${AIOHTTP_VERSION}" ffmpeg="${FFMPEG_VERSION}" \
+    iproute2="${IPROUTE2_VERSION}" iw="${IW_VERSION}" wpa_supplicant="${WPA_SUPPLICANT_VERSION}"
 
-ARG SDK_COMMIT=0864a988362d4e204f285f908c3b0a31c6c51375
-ADD --checksum=sha256:85aa307d7f1eb611e26c96dccebd189754f0a6cb3d23bf52baf6c04178ad1960 https://codeload.github.com/seb5594/wifi-drone-connect/tar.gz/${SDK_COMMIT} /tmp/sdk.tar.gz
+ARG SDK_COMMIT=adf9f820ebf175ce4228caf6befb6a7f057aa68a
+ADD --checksum=sha256:3d2525bd4e3f8fdf1fceb8fdcfd3dd0f4149c7d3ed6c17690e717b6c5b864578 https://codeload.github.com/seb5594/wifi-drone-connect/tar.gz/${SDK_COMMIT} /tmp/sdk.tar.gz
+ARG HELPER_COMMIT=95bf63088182eaad055aebd3ee933d249bf7a521
+ADD --checksum=sha256:3c828e925a4680ae4f641b9be4d4b79d9e14dbd8290aa2c86fdecf9cb80a3e08 https://codeload.github.com/seb5594/Home-Assistant-WiFi-Helper-App/tar.gz/${HELPER_COMMIT} /tmp/helper.tar.gz
 WORKDIR /opt/wifi-drone
 RUN tar -xzf /tmp/sdk.tar.gz --strip-components=2 "wifi-drone-connect-${SDK_COMMIT}/src/wifi_drone_connect" \
     && mkdir -p /usr/share/licenses/wifi-drone-connect \
     && tar -xzf /tmp/sdk.tar.gz --strip-components=1 -C /usr/share/licenses/wifi-drone-connect "wifi-drone-connect-${SDK_COMMIT}/LICENSE" \
-    && rm /tmp/sdk.tar.gz
+    && tar -xzf /tmp/helper.tar.gz --strip-components=2 "Home-Assistant-WiFi-Helper-App-${HELPER_COMMIT}/sdk/wifi_helper" \
+    && mkdir -p /usr/share/licenses/ha-wifi-helper-client \
+    && tar -xzf /tmp/helper.tar.gz --strip-components=2 -C /usr/share/licenses/ha-wifi-helper-client "Home-Assistant-WiFi-Helper-App-${HELPER_COMMIT}/sdk/LICENSE" \
+    && rm /tmp/sdk.tar.gz /tmp/helper.tar.gz
 
-ARG BUILD_VERSION=0.1.0
+ARG BUILD_VERSION=0.2.0
 ARG BUILD_ARCH=amd64
 LABEL io.hass.version="${BUILD_VERSION}" \
     io.hass.type="addon" \
@@ -27,7 +39,7 @@ LABEL io.hass.version="${BUILD_VERSION}" \
 
 COPY bridge/ ./bridge/
 COPY run.sh entrypoint.sh /
-RUN chmod a+x /run.sh /entrypoint.sh
+RUN chmod a+x /run.sh /entrypoint.sh ./bridge/station_dhcp.py
 
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 CMD ["/run.sh"]

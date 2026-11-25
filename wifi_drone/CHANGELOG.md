@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+- Connect to a drone access point using an isolated WiFi App Helper radio lease.
+- Support open networks and WPA2-Personal with a dedicated DHCP camera route.
+- Add KY UFO RTSP with video heartbeats and JieLi/HF CTP with JPEG reception.
+- Show the WiFi connection stage in the web view.
+
 ## 0.1.0
 
 - Added a local bridge for RTSP and HTTP(S) camera sources.

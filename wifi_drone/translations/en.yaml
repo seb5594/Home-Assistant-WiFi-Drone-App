@@ -1,7 +1,7 @@
 configuration:
   source_url:
     name: Camera URL
-    description: "RTSP or HTTP(S) endpoint reachable from the Home Assistant host."
+    description: "RTSP, HTTP(S), kyufo:// or jieli:// camera source."
   api_token:
     name: Bridge API token
     description: "Use at least 16 printable ASCII characters without spaces. Leave blank to disable API access."
@@ -11,3 +11,15 @@ configuration:
   copy_mjpeg:
     name: Preserve original JPEG frames
     description: "Enable this only when the source video is already encoded as MJPEG."
+  wifi_ssid:
+    name: Drone WiFi SSID
+    description: "Set the exact access point name to use WiFi App Helper. Leave blank for a camera already reachable on the network."
+  wifi_password:
+    name: Drone WiFi password
+    description: "WPA2-Personal passphrase. Leave blank if the drone access point is open."
+  wifi_interface:
+    name: Dedicated WiFi adapter
+    description: "Select an unused eligible interface. A blank value selects the only eligible adapter automatically."
+  pairing_token:
+    name: WiFi App Helper pairing secret
+    description: "Use the same private pairing_token as in WiFi App Helper."

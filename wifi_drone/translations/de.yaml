@@ -1,7 +1,7 @@
 configuration:
   source_url:
     name: Kamera-URL
-    description: "Vom Home-Assistant-Host erreichbarer RTSP- oder HTTP(S)-Endpunkt."
+    description: "RTSP-, HTTP(S)-, kyufo:// oder jieli://-Kameraquelle."
   api_token:
     name: Bridge-API-Token
     description: "Mindestens 16 druckbare ASCII-Zeichen ohne Leerzeichen. Leer lassen, um die API zu deaktivieren."
@@ -11,3 +11,15 @@ configuration:
   copy_mjpeg:
     name: Originale JPEG-Bilder beibehalten
     description: "Nur für Quellen aktivieren, die bereits als MJPEG kodiert sind."
+  wifi_ssid:
+    name: WLAN der Drohne
+    description: "Exakter Name des Access Points für WiFi App Helper. Für eine bereits erreichbare Kamera leer lassen."
+  wifi_password:
+    name: WLAN-Passwort der Drohne
+    description: "Passwort für WPA2-Personal. Bei einem offenen Drohnen-WLAN leer lassen."
+  wifi_interface:
+    name: Dedizierter WLAN-Adapter
+    description: "Name einer freien, geeigneten Schnittstelle. Wenn genau eine verfügbar ist, genügt ein leeres Feld."
+  pairing_token:
+    name: Kopplungsgeheimnis für WiFi App Helper
+    description: "Denselben privaten pairing_token wie in WiFi App Helper eintragen."

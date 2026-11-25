@@ -5,6 +5,7 @@ const toggle = document.querySelector("#toggle");
 const status = document.querySelector("#status");
 let paused = false;
 let state = "connecting";
+let wifiState;
 
 const labels = {
   streaming: "Live",
@@ -14,8 +15,18 @@ const labels = {
   offline: "Bridge unavailable",
 };
 
+const wifiLabels = {
+  waiting_helper: "Waiting for WiFi App Helper",
+  pairing_required: "Set the same pairing secret in both apps",
+  helper_protocol: "WiFi App Helper protocol is incompatible",
+  adapter_unavailable: "Choose an available adapter in the app configuration",
+  joining: "Joining the drone WiFi…",
+  dhcp: "Waiting for the drone network address…",
+  joining_failed: "WiFi setup failed. Check the app logs.",
+};
+
 function update() {
-  status.textContent = labels[state] ?? labels.offline;
+  status.textContent = wifiLabels[wifiState] ?? labels[state] ?? labels.offline;
   snapshot.hidden = state !== "streaming";
   if (!paused && state === "streaming") {
     if (!preview.hasAttribute("src")) {
@@ -50,9 +61,12 @@ async function poll() {
   try {
     const response = await fetch("api/v1/status", { cache: "no-store" });
     if (!response.ok) throw new Error("Bridge unavailable");
-    state = (await response.json()).state;
+    const result = await response.json();
+    state = result.state;
+    wifiState = result.wifi_state;
   } catch {
     state = "offline";
+    wifiState = undefined;
   } finally {
     update();
     setTimeout(poll, 2000);

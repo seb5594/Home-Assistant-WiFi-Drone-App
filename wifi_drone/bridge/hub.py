@@ -22,6 +22,9 @@ class FrameHub:
             self._generation += 1
             self._changed.notify_all()
 
+    async def clear(self) -> None:
+        await self._update(None, "reconnecting" if self.camera else "unconfigured")
+
     async def run(self) -> None:
         if self.camera is None:
             return
@@ -30,7 +33,7 @@ class FrameHub:
                 async with aclosing(self.camera.frames()) as frames:
                     async for frame in frames:
                         await self._update(frame, "streaming")
-            await self._update(None, "reconnecting")
+            await self.clear()
             await asyncio.sleep(2)
 
     async def frames(self) -> AsyncGenerator[bytes, None]:
