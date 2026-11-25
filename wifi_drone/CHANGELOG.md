@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+- Receive the H.264 camera stream from Lewei / WiFi-720P toys over TCP and show it as MJPEG.
+
 ## 0.2.0
 
 - Connect to a drone access point using an isolated WiFi App Helper radio lease.

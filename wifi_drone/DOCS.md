@@ -21,6 +21,7 @@ For cameras already reachable from the app, leave `wifi_ssid` empty. This preser
 | HTTP MJPEG | `http://192.168.1.1:8080/?action=stream` |
 | KY UFO / some `FLY-UFO-…` models | `kyufo://192.168.1.1` sends a video heartbeat and reads RTSP. Add `?rotate=0` if the camera is upright. |
 | JieLi / some `HF_…` models | `jieli://192.168.80.1` starts the JPEG stream over CTP and receives fragmented JPEG on UDP 2224 or whole JPEG datagrams on UDP 6666. |
+| Lewei / some `WiFi-720P-…` models | `lewei://192.168.0.1` receives H.264 camera video on TCP 7060. The adapter handles stream types 0 and 1. |
 
 Select TCP or UDP for RTSP. Enable `copy_mjpeg` only for MJPEG sources, with `?rotate=0` for KY UFO passthrough. Close the vendor camera preview if the drone accepts only one viewer. The Gear2Play Sky Cam's SSID is `SKY CAM DRONE`. Its camera address and transport still need to be confirmed on the actual unit. The examples come from the [OpenIPC toy camera notes](https://github.com/OpenIPC/decoder/blob/v2/docs/toys.md).
 

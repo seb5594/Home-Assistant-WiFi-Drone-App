@@ -1,7 +1,7 @@
 configuration:
   source_url:
     name: Kamera-URL
-    description: "RTSP-, HTTP(S)-, kyufo:// oder jieli://-Kameraquelle."
+    description: "RTSP-, HTTP(S)-, kyufo://, jieli:// oder lewei://-Kameraquelle."
   api_token:
     name: Bridge-API-Token
     description: "Mindestens 16 druckbare ASCII-Zeichen ohne Leerzeichen. Leer lassen, um die API zu deaktivieren."

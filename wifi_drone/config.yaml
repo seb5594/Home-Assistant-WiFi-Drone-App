@@ -1,5 +1,5 @@
 name: WiFi Drone Connect
-version: 0.2.0
+version: 0.3.0
 slug: wifi_drone
 description: Local live video and snapshots from WiFi drone cameras.
 url: https://github.com/seb5594/Home-Assistant-WiFi-Drone-App

@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-Lokale Kamera-Bridge für RTSP, HTTP(S), KY UFO und JieLi/HF. Die Home-Assistant-App bietet ein Livebild über Ingress, JPEG-Schnappschüsse und eine authentifizierte API für die separate Integration.
+Lokale Kamera-Bridge für RTSP, HTTP(S), KY UFO, JieLi/HF und Lewei. Die Home-Assistant-App bietet ein Livebild über Ingress, JPEG-Schnappschüsse und eine authentifizierte API für die separate Integration.
 
 1. Füge [dieses App-Repository](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fseb5594%2FHome-Assistant-WiFi-Drone-App) in Home Assistant hinzu.
 2. Installiere **WiFi Drone Connect**. Für das WLAN der Drohne starte [WiFi App Helper](https://github.com/seb5594/Home-Assistant-WiFi-Helper-App) und trage SSID, Kopplungsgeheimnis und Kamera-URL in der Drone App ein.
