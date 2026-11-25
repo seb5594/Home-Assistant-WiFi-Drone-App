@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.1
+
+- Support the Sky Cam CTP access version observed in a hardware capture.
+
 ## 0.3.0
 
 - Receive the H.264 camera stream from Lewei / WiFi-720P toys over TCP and show it as MJPEG.

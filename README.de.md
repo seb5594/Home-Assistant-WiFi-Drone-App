@@ -10,7 +10,7 @@ Lokale Kamera-Bridge für RTSP, HTTP(S), KY UFO, JieLi/HF und Lewei. Die Home-As
 
 [Konfiguration und API](wifi_drone/DOCS.md) · [Python-SDK](https://github.com/seb5594/wifi-drone-connect)
 
-Das konkrete Stream-Protokoll und die Kamera-Adresse der Gear2Play Sky Cam müssen noch an einem Gerät bestätigt werden.
+Ein Mitschnitt der Gear2Play Sky Cam bestätigt die Kamerasteuerung unter `192.168.80.1:3333`. Das Livebild muss noch am Gerät geprüft werden.
 
 ## Lizenz
 
