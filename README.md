@@ -7,11 +7,11 @@
 
 <p align="center">
   <a href="https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fseb5594%2FHome-Assistant-Apps"><img src="https://img.shields.io/static/v1?label=Home%20Assistant&amp;message=Add%20app%20repository&amp;color=18BCF2&amp;logo=homeassistant&amp;logoColor=white&amp;style=for-the-badge" alt="Home Assistant" height="28"></a><br>
-  <a href="https://github.com/seb5594/Home-Assistant-WiFi-Drone-App/releases/tag/v0.3.2"><img src="https://img.shields.io/static/v1?label=app%20version&amp;message=0.3.2&amp;color=1877A5&amp;style=for-the-badge" alt="app version" height="28"></a>
-  <img src="https://img.shields.io/static/v1?label=image%20pulls&amp;message=20&amp;color=1877A5&amp;style=for-the-badge" alt="image pulls" height="28"><br>
+  <a href="https://github.com/seb5594/Home-Assistant-WiFi-Drone-App/releases/tag/2026.11.26"><img src="https://img.shields.io/static/v1?label=app%20version&amp;message=2026.11.26&amp;color=1877A5&amp;style=for-the-badge" alt="app version" height="28"></a>
+  <img src="https://img.shields.io/static/v1?label=image%20pulls&amp;message=24&amp;color=1877A5&amp;style=for-the-badge" alt="image pulls" height="28"><br>
   <img src="https://img.shields.io/static/v1?label=stage&amp;message=stable&amp;color=2F855A&amp;style=flat" alt="stage" height="20">
   <img src="https://img.shields.io/static/v1?label=ingress&amp;message=enabled&amp;color=7C3AED&amp;style=flat" alt="ingress" height="20">
-  <img src="https://img.shields.io/static/v1?label=arch%20%26%20size&amp;message=amd64%2083.7%20%C2%B7%20aarch64%2080.8%20MiB&amp;color=157F71&amp;style=flat" alt="arch &amp; size" height="20">
+  <img src="https://img.shields.io/static/v1?label=arch%20%26%20size&amp;message=amd64%2083.7%20%C2%B7%20aarch64%2080.9%20MiB&amp;color=157F71&amp;style=flat" alt="arch &amp; size" height="20">
   <a href="https://github.com/seb5594/home-assistant-base-multi-arch"><img src="https://img.shields.io/static/v1?label=base%20image&amp;message=3.24-2026.11.0&amp;color=1877A5&amp;style=flat" alt="base image" height="20"></a>
   <img src="https://img.shields.io/static/v1?label=mounts%20%28read-write%29&amp;message=share&amp;color=B45309&amp;style=flat" alt="mounts (read-write)" height="20">
   <img src="https://img.shields.io/static/v1?label=privileged&amp;message=NET_ADMIN%2C%20NET_RAW&amp;color=B45309&amp;style=flat" alt="privileged" height="20"><br>
