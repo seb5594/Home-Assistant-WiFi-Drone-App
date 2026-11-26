@@ -8,6 +8,8 @@ profile wifi_drone flags=(attach_disconnected,mediate_deleted) {
   capability net_raw,
   capability net_bind_service,
   / r,
+  /entrypoint.sh r,
+  /run.sh rix,
   /{bin,sbin,lib,lib64}/** rixm,
   /usr/{,**} rixm,
   /opt/{,**} rixm,

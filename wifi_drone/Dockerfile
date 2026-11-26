@@ -30,7 +30,7 @@ RUN tar -xzf /tmp/sdk.tar.gz --strip-components=2 "wifi-drone-connect-${SDK_COMM
     && tar -xzf /tmp/helper.tar.gz --strip-components=2 -C /usr/share/licenses/ha-wifi-helper-client "Home-Assistant-WiFi-Helper-App-${HELPER_COMMIT}/sdk/LICENSE" \
     && rm /tmp/sdk.tar.gz /tmp/helper.tar.gz
 
-ARG BUILD_VERSION=2026.11.26
+ARG BUILD_VERSION=2026.11.26.1
 ARG BUILD_ARCH=amd64
 LABEL io.hass.version="${BUILD_VERSION}" \
     io.hass.type="addon" \

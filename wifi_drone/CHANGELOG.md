@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026.11.26.1
+
+- Fix `/bin/bash: /entrypoint.sh: Permission denied` on start: the AppArmor profile did not allow reading the entrypoint or running `/run.sh`.
+
 ## 2026.11.26
 
 - Find WiFi App Helper by its Home Assistant host name (option `wifi_helper_host`, default `4c7fee11-wifi-helper`) instead of a pairing secret. This needs a helper with protocol 4.
