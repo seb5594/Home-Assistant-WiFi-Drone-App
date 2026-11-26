@@ -19,8 +19,8 @@ RUN apk add --no-cache python3="${PYTHON_VERSION}" py3-aiohttp="${AIOHTTP_VERSIO
 
 ARG SDK_COMMIT=c24f6b404821747e1a6b1d790718c5730c174e64
 ADD --checksum=sha256:6085ae929acc869211575a1c67df9bc9384bc5f0672fa7d5d49c122829e6ddf1 https://codeload.github.com/seb5594/wifi-drone-connect/tar.gz/${SDK_COMMIT} /tmp/sdk.tar.gz
-ARG HELPER_COMMIT=95bf63088182eaad055aebd3ee933d249bf7a521
-ADD --checksum=sha256:3c828e925a4680ae4f641b9be4d4b79d9e14dbd8290aa2c86fdecf9cb80a3e08 https://codeload.github.com/seb5594/Home-Assistant-WiFi-Helper-App/tar.gz/${HELPER_COMMIT} /tmp/helper.tar.gz
+ARG HELPER_COMMIT=e440f92c4d75f6d5e51d45623a7155b197f16be6
+ADD --checksum=sha256:338a4c74041d8e27e2274475fa3650b376db30a92fa24db0a8b12e7c03d5f0ba https://codeload.github.com/seb5594/Home-Assistant-WiFi-Helper-App/tar.gz/${HELPER_COMMIT} /tmp/helper.tar.gz
 WORKDIR /opt/wifi-drone
 RUN tar -xzf /tmp/sdk.tar.gz --strip-components=2 "wifi-drone-connect-${SDK_COMMIT}/src/wifi_drone_connect" \
     && mkdir -p /usr/share/licenses/wifi-drone-connect \
@@ -30,7 +30,7 @@ RUN tar -xzf /tmp/sdk.tar.gz --strip-components=2 "wifi-drone-connect-${SDK_COMM
     && tar -xzf /tmp/helper.tar.gz --strip-components=2 -C /usr/share/licenses/ha-wifi-helper-client "Home-Assistant-WiFi-Helper-App-${HELPER_COMMIT}/sdk/LICENSE" \
     && rm /tmp/sdk.tar.gz /tmp/helper.tar.gz
 
-ARG BUILD_VERSION=0.3.2
+ARG BUILD_VERSION=2026.11.26
 ARG BUILD_ARCH=amd64
 LABEL io.hass.version="${BUILD_VERSION}" \
     io.hass.type="addon" \

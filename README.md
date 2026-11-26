@@ -29,12 +29,12 @@
 Local camera bridge for RTSP, HTTP(S), KY UFO, JieLi/HF and Lewei video sources. The Home Assistant app provides an Ingress live view, JPEG snapshots and an authenticated API for the companion integration.
 
 1. Add [this app repository](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fseb5594%2FHome-Assistant-WiFi-Drone-App) in Home Assistant.
-2. Install **WiFi Drone Connect**. For a drone access point, start [WiFi App Helper](https://github.com/seb5594/Home-Assistant-WiFi-Helper-App) and set the SSID, pairing secret and camera URL in the Drone app.
+2. Install **WiFi Drone Connect**. For a drone access point, start [WiFi App Helper](https://github.com/seb5594/Home-Assistant-WiFi-Helper-App) and set the SSID and camera URL in the Drone app. The helper is found by its host name; no pairing secret is needed.
 3. Open the app's Web UI or install the [WiFi Drone integration](https://github.com/seb5594/hass-wifi_drone-integration) for native camera and connectivity entities.
 
 [Configuration and API](wifi_drone/DOCS.md) · [Python SDK](https://github.com/seb5594/wifi-drone-connect)
 
-A capture from a Gear2Play Sky Cam confirmed the camera control endpoint at `192.168.80.1:3333`. Live video still needs a hardware test.
+A capture from a Gear2Play Sky Cam confirmed the camera control endpoint at `192.168.80.1:3333`. Live video still needs a hardware test: the app can record the drone's traffic as a pcap file for Wireshark ([how](wifi_drone/DOCS.md#record-the-drones-traffic-for-wireshark)).
 
 <!-- support:begin (generated, shared text) -->
 ## Say thanks

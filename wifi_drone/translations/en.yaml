@@ -20,6 +20,9 @@ configuration:
   wifi_interface:
     name: Dedicated WiFi adapter
     description: "Select an unused eligible interface. A blank value selects the only eligible adapter automatically."
-  pairing_token:
-    name: WiFi App Helper pairing secret
-    description: "Use the same private pairing_token as in WiFi App Helper."
+  wifi_helper_host:
+    name: WiFi App Helper host
+    description: "Home Assistant host name of WiFi App Helper. The default fits the official app repository; use local-wifi-helper for a local install. No pairing secret is needed."
+  record_traffic:
+    name: Record drone traffic
+    description: "Save everything the drone radio sends and receives as a pcap file for Wireshark (see the app documentation). Delete the files when you are done; they can contain device identifiers."

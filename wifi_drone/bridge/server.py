@@ -30,6 +30,8 @@ async def status(request: web.Request) -> web.Response:
                "capabilities": ["snapshot", "mjpeg"]}
     if wifi := request.app.get(WIFI):
         payload["wifi_state"] = wifi.state
+        if wifi.capture_name:
+            payload["capture"] = wifi.capture_name
     return web.json_response(payload, headers=NO_CACHE)
 
 
@@ -109,8 +111,8 @@ def options() -> tuple[FrameHub, str, bool, WifiConnection | None]:
         except ValueError:
             raise ValueError("WiFi Helper mode requires a camera URL with a literal IPv4 address") from None
         wifi = WifiConnection(WifiSettings(
-            ssid, config.get("wifi_password") or "", config.get("pairing_token") or "",
-            config.get("wifi_interface") or "", address,
+            ssid, config.get("wifi_password") or "", config.get("wifi_helper_host") or "",
+            config.get("wifi_interface") or "", address, bool(config.get("record_traffic")),
         ))
     return FrameHub(camera), token, os.environ.get("DRONE_HA_INGRESS") == "1", wifi
 

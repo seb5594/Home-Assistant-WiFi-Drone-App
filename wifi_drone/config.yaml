@@ -1,5 +1,5 @@
 name: WiFi Drone Connect
-version: 0.3.2
+version: 2026.11.26
 slug: wifi_drone
 description: Local live video and snapshots from WiFi drone cameras.
 url: https://github.com/seb5594/Home-Assistant-WiFi-Drone-App
@@ -34,7 +34,8 @@ options:
   wifi_ssid: ""
   wifi_password: ""
   wifi_interface: ""
-  pairing_token: ""
+  wifi_helper_host: 4c7fee11-wifi-helper
+  record_traffic: false
 schema:
   source_url: str
   api_token: password
@@ -43,4 +44,5 @@ schema:
   wifi_ssid: str?
   wifi_password: password?
   wifi_interface: str?
-  pairing_token: password?
+  wifi_helper_host: str
+  record_traffic: bool
