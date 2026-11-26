@@ -20,6 +20,9 @@ configuration:
   wifi_interface:
     name: Dedizierter WLAN-Adapter
     description: "Name einer freien, geeigneten Schnittstelle. Wenn genau eine verfügbar ist, genügt ein leeres Feld."
-  pairing_token:
-    name: Kopplungsgeheimnis für WiFi App Helper
-    description: "Denselben privaten pairing_token wie in WiFi App Helper eintragen."
+  wifi_helper_host:
+    name: Host des WiFi App Helpers
+    description: "Home-Assistant-Hostname des WiFi App Helpers. Der Standard passt zum offiziellen App-Repository; bei lokaler Installation local-wifi-helper verwenden. Ein Kopplungsgeheimnis ist nicht nötig."
+  record_traffic:
+    name: Drohnen-Verkehr aufzeichnen
+    description: "Speichert alles, was der Drohnen-Adapter sendet und empfängt, als pcap-Datei für Wireshark (siehe Dokumentation der App). Dateien nach der Analyse löschen; sie können Gerätekennungen enthalten."

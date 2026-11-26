@@ -17,7 +17,7 @@ const labels = {
 
 const wifiLabels = {
   waiting_helper: "Waiting for WiFi App Helper",
-  pairing_required: "Set the same pairing secret in both apps",
+  helper_rejected: "WiFi App Helper refused the request. Restart both apps",
   helper_protocol: "WiFi App Helper protocol is incompatible",
   adapter_unavailable: "Choose an available adapter in the app configuration",
   joining: "Joining the drone WiFi…",

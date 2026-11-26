@@ -12,7 +12,8 @@ from pathlib import Path
 import tempfile
 import threading
 
-from wifi_helper import Client, HelperUnavailable, PairingFailed, ProtocolMismatch, SecretNotSet
+from wifi_helper import Client, HelperRejected, HelperUnavailable, ProtocolMismatch
+from wifi_helper.capture import PcapRecorder
 
 from .hub import FrameHub
 
@@ -86,9 +87,10 @@ def supplicant_config(ssid: str, password: str, control: str) -> str:
 class WifiSettings:
     ssid: str
     password: str
-    pairing_token: str
+    helper_host: str
     interface: str
     camera_ip: IPv4Address
+    record_traffic: bool = False
 
     def __post_init__(self) -> None:
         supplicant_config(self.ssid, self.password, "/run")
@@ -104,13 +106,14 @@ class WifiConnection:
         self.settings = settings
         self.state = "waiting_helper"
         self.lost = threading.Event()
+        self.capture_name: str | None = None  # Newest pcap of the drone radio, when recording is on.
 
     def check_lease(self) -> None:
         if self.lost.is_set():
             raise RadioRecoveryRequired("WiFi Helper lease lost. Exiting for radio recovery.")
 
     def acquire(self):
-        client = Client(self.settings.pairing_token, lost=self.lost)
+        client = Client(self.settings.helper_host, lost=self.lost)
         adapters = [item["name"] for item in client.inventory()["adapters"] if item["eligible"]]
         selected = self.settings.interface
         if not selected and len(adapters) == 1:
@@ -126,12 +129,11 @@ class WifiConnection:
             self.state = "waiting_helper"
             try:
                 await self.run_once(hub, stop)
-            except (HelperUnavailable, SecretNotSet, PairingFailed, ProtocolMismatch) as error:
+            except (HelperUnavailable, HelperRejected, ProtocolMismatch) as error:
                 self.check_lease()
                 self.state = {
                     HelperUnavailable: "waiting_helper",
-                    SecretNotSet: "pairing_required",
-                    PairingFailed: "pairing_required",
+                    HelperRejected: "helper_rejected",
                     ProtocolMismatch: "helper_protocol",
                 }[type(error)]
             except (RetryWifi, OSError, TimeoutError, ValueError, RuntimeError) as error:
@@ -163,6 +165,7 @@ class WifiConnection:
                 # The camera route uses IPv4; do not generate IPv6 addresses on this radio.
                 await command("ip", "link", "set", "dev", interface, "addrgenmode", "none")
                 await command("ip", "link", "set", "dev", interface, "up")
+                self.start_recording(resources, interface)
                 wpa = await self.worker(resources, "wpa_supplicant", "-D", "nl80211",
                                         "-i", interface, "-c", str(config))
                 await self.await_ready(stop, (wpa,), self.associated, interface, control)
@@ -196,6 +199,22 @@ class WifiConnection:
                 await asyncio.to_thread(radio.release)
             except Exception as error:
                 raise RadioRecoveryRequired("Radio return unconfirmed. Exiting for helper recovery.") from error
+
+    def start_recording(self, resources: AsyncExitStack, interface: str) -> None:
+        """Record everything the drone radio sees (association, DHCP, camera control and video) for Wireshark.
+
+        Recording is a diagnostic aid and must never stop the camera, so every failure is only logged.
+        """
+        if not self.settings.record_traffic:
+            return
+        try:
+            recorder = PcapRecorder(interface, "drone").start()
+        except OSError as error:
+            LOGGER.warning("Traffic recording unavailable (%s). The app needs NET_RAW.", type(error).__name__)
+            return
+        self.capture_name = recorder.path.name
+        resources.callback(recorder.stop)
+        LOGGER.info("Recording drone traffic to %s", recorder.path)
 
     @staticmethod
     async def worker(resources: AsyncExitStack, *args: str, env=None) -> asyncio.subprocess.Process:

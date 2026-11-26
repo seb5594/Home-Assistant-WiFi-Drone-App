@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026.11.26
+
+- Find WiFi App Helper by its Home Assistant host name (option `wifi_helper_host`, default `4c7fee11-wifi-helper`) instead of a pairing secret. This needs a helper with protocol 4.
+- New option `record_traffic`: save everything the drone radio sends and receives as a pcap file, to find the port and framing of a camera whose video does not show up. Open it in Wireshark through the helper's optional capture feature.
+- Report the recording's file name in `GET /api/v1/status` and show a refused helper request as its own connection state.
+- Switch to calendar versioning.
+
 ## 0.3.2
 
 - Log JieLi camera replies and packet counts per UDP listener when video times out.
